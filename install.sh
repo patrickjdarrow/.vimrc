@@ -1,17 +1,18 @@
 sudo apt update && \
 sudo apt install -y tmux
 
-if [ -f ~/.tmux.conf ]; then
-	suffix=$(date +%s)
-	backup_dst=~/.tmux.conf_$suffix
-	echo "Backing up existing .tmux.conf -> $backup_dst"
-	mv ~/.tmux.conf $backup_dst
-fi
 
-echo "Copying .tmux.conf to ~/.tmux.conf"
-cp ./.tmux.conf ~/.tmux.conf
+for file in ".tmux.conf" ".vimrc"; do
+	if [ -f ~/$file ]; then
+		suffix=$(date +%s)
+		backup_dst=~/$file_$suffix
+		echo "Backing up existing $file -> $backup_dst"
+		mv ~/$file $backup_dst
+	fi
+	
+	echo "Copying $file to ~/$file"
+	cp ./$file ~/$file
+done
 
-
-echo "Updating tmux"
+echo "Updating Tmux"
 tmux source-file ~/.tmux.conf
-
