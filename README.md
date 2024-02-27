@@ -2,6 +2,9 @@
 
 
 ```
+git clone https://github.com/patrickjdarrow/here_we_go_again.git
+cd here_we_go_again
+
 chmod +x setup.sh  
 ./setup.sh
 ```
