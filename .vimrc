@@ -1,10 +1,17 @@
 au BufRead,BufNewFile *.py set expandtab
+au BufRead,BufNewFile *.yaml set expandtab
 au BufRead,BufNewFile *.c set expandtab
 au BufRead,BufNewFile *.h set expandtab
 au BufRead,BufNewFile Makefile* set noexpandtab
 
 
-set relativenumber!
+" Toggle relative line numbering on in normal mode, off in insert mode
+:set number
+:augroup numbertoggle
+:  autocmd!
+:  autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu && mode() != "i" | set rnu   | endif
+:  autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu                  | set nornu | endif
+:augroup END
 
 " --------------------------------------------------------------------------------
 " configure editor with tabs and nice stuff...
